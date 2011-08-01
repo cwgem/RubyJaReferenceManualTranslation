@@ -1,0 +1,93 @@
+Environment Variables
+=====================
+
+The Ruby interpreter references the environment variables listed below.
+
+Rubyインタプリタは以下の環境変数を参照します。
+
+RUBYOPT
+--------
+Indicates the default options to pass to the Ruby interpreter.
+
+Rubyインタプリタにデフォルトで渡すオプションを指定します。
+
+sh Version sh系
+
+    RUBYOPT='-Ke -rkconv'
+    export RUBYOPT
+
+csh Version csh系
+
+    setenv RUBYOPT '-Ke -rkconv'
+
+MS-DOS Version MS-DOS系
+
+    set RUBYOPT=-Ke -rkconv
+
+RUBYPATH
+---------
+When the -S option is specified, the directories indicated by this environment variable are added to the list of locations in PATH referenced to when searching for scripts. These directories have higher precedence over the PATH variable. For a full list of startup options, please consult [Ruby Execution](http://doc.ruby-lang.org/ja/1.9.2/doc/spec=2frubycmd.html).
+
+-S オプション指定時に、環境変数 PATH による Ruby スクリプトの探索に加えて、この環境変数で指定したディレクトリも 探索対象になります。(PATH の値よりも優先します)。 起動オプションの詳細に関してはRubyの起動 を参照してください。
+
+sh Version sh系
+
+    RUBYPATH=$HOME/ruby:/opt/ruby
+    export RUBYPATH
+
+csh Version csh系
+
+    setenv RUBYPATH $HOME/ruby:/opt/ruby
+
+MS-DOS Version MS-DOS系
+
+    set RUBYPATH=%HOME%\ruby:\opt\ruby
+
+RUBYLIB
+--------
+The value of this environment variable is prepended to Ruby's default library search path, [$:](http://doc.ruby-lang.org/ja/1.9.2/method/Kernel/v/=3a.html).
+
+Rubyライブラリの探索パス$:のデフォル ト値の前にこの環境変数の値を付け足します。
+
+sh Version sh系
+
+    RUBYLIB=$HOME/ruby/lib:/opt/ruby/lib
+    export RUBYLIB
+
+csh Version csh系
+
+    setenv RUBYLIB $HOME/ruby/lib:/opt/ruby/lib
+
+MS-DOS Version MS-DOS系
+
+    set RUBYLIB=%HOME%\ruby\lib:\opt\ruby\lib
+
+RUBYLIB_PREFIX
+--------------
+This is specific to the [DJGPP](http://doc.ruby-lang.org/ja/1.9.2/doc/platform=2fDJGPP.html), [Cygwin](http://doc.ruby-lang.org/ja/1.9.2/doc/platform=2fCygwin.html), [mswin32](http://doc.ruby-lang.org/ja/1.9.2/doc/platform=2fmswin32.html), and [mingw32](http://doc.ruby-lang.org/ja/1.9.2/doc/platform=2fmingw32.html) versions of Ruby.
+
+The syntax for the value of this variable is `path1;path2` or `path1 path2`. When Ruby is searching the default library search path, [$:](http://doc.ruby-lang.org/ja/1.9.2/method/Kernel/v/=3a.html), it will replace paths whose prefix matches `path1` with `path2`. Note that it is unnecessary to set this variable when the prefix of the library path is relative to `ruby.exe` and `ruby.dll`.
+
+この環境変数は DJGPP版、Cygwin版、mswin32版、 mingw32版のrubyでのみ有効です。
+
+この環境変数の値は、path1;path2 あるいは path1 path2 という形式で、 Rubyライブラリの探索パス$:の先頭部分 がpath1にマッチした場合に、これをpath2に置き換えます。 ((-現在の実装ではライブラリのパスの prefix を ruby.exe や ruby.dll のある位置から 相対的に求めるのでこの環境変数の必要性はなくなっています-))
+
+MS-DOS Version MS-DOS系
+
+    set RUBYLIB_PREFIX=/usr/local/lib/ruby;d:/ruby
+
+RUBYSHELL
+---------
+This is specific to the [OS2](http://doc.ruby-lang.org/ja/1.9.2/doc/platform=2fOS2.html), [mswin32](http://doc.ruby-lang.org/ja/1.9.2/doc/platform=2fmswin32.html), and [mingw32](http://doc.ruby-lang.org/ja/1.9.2/doc/platform=2fmingw32.html) versions of Ruby.
+
+The value indicates which shell is to be used when running commands through the [Kernel.#system](http://doc.ruby-lang.org/ja/1.9.2/method/Kernel/m/system.html) method. If not set, the default is the value of `COMSPEC`.
+
+この環境変数は OS2版、mswin32版、mingw32版のrubyで のみ有効です。
+
+Kernel.#systemでコマンドを実行するときに使用するシェル を指定します。この環境変数が省略されていればCOMSPECの値を 使用します。
+
+PATH
+----
+Indicates the search path for commands called through the [Kernel.#system](http://doc.ruby-lang.org/ja/1.9.2/method/Kernel/m/system.html)  method. If not set (nil value), the default search path is `/usr/local/bin:/usr/ucb:/usr/bin:/bin:.`.
+
+Kernel.#systemなどでコマンドを実行するときに検索するパスです。 設定されていないとき(nilのとき)は "/usr/local/bin:/usr/ucb:/usr/bin:/bin:." で検索されます。
