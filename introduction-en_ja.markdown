@@ -1,7 +1,11 @@
 Introduction
 ============
 
-Ruby is an easy to use object oriented interpreted scripting language. It has a wealth of features for text processing and systems administration, much like Perl. 
+Ruby is an easy to use object oriented interpreted scripting language. There are a wealth of features for text processing and systems administration, much like Perl. It is easy to extend the language to fit your needs.
+
+If you're looking for an easy to use object oriented language, but Perl is too cryptic, or you like Lisp but can't stand all the parentheses, then Ruby is the right language for you.
+
+Below are the strong points of the language.
 
 Rubyは手軽なオブジェクト指向プログラミングのためのインタプリタ言語です。 Rubyは(Perlのような)テキスト処理やシステム管理のための豊富な機能を持っています。 また、Rubyは単純で、分かりやすく、簡単に拡張できます。
 
@@ -23,7 +27,7 @@ Rubyの変数はどのような型のデータも格納する事ができます�
 
 Variable Declaration is Unnecessary 変数宣言が不要
 -------
-Variables in Ruby can be used without having to declare them. The actual type of variable(local, global, instance) can be determined from the variable name.
+Variables in Ruby can be used without having to declare them. The actually type of variable(local, global, instance) can be determined from the variable name.
 
 Rubyでは変数を宣言無しで使う事ができます。 変数の種類(ローカル変数、グローバル変数、インスタンス変数など)は 変数名から知る事ができます。
 
@@ -35,6 +39,7 @@ Rubyの文法はEiffelからわずかに影響を受けた単純なものです�
 No User-Based Memory Management ユーザによるメモリ管理が不要
 --------------
 Ruby handles memory management automatically. Objects that are no longer accessed are collected by a garbage collector built into the interpreter.
+
 Rubyはメモリ管理を自動的に行います。 どこからもアクセスされなくなったオブジェクトは インタプリタに組み込みのガーベージコレクタによって回収されます。
 
 Everything is an Object 全てがオブジェクト
@@ -46,18 +51,25 @@ Rubyははじめから純粋なオブジェクト指向言語として設計さ�
 Classes, Inheritance, Methods クラス、継承、メソッド
 -----------
 Ruby contains basic object oriented language features such as classes, inheritance, and methods.
+
 Rubyは クラス、継承、メソッドのようなオブジェクト指向言語として基本的な機能は 当然持っています。
 
 Singleton Methods 特異メソッド
 ------
+It is possible to append methods to a specific object. For example a method could be used to describe an action to be performed when a button is pressed. This allows, should you choose, for prototype based object oriented programming.
+
 ある特定のオブジェクトにメソッドを付加することができます。 たとえば、GUIのあるボタンを押された時の動作を メソッドとして記述するような使い方ができますし、 これを応用してプロトタイプベースの オブジェクト指向プログラミングも可能です(やりたければね)。
 
 Mix-ins Through Modules モジュールによるMix-in
 ---------------
+As multiple inheritance is often a source of complexity, Ruby has intentionally left out support for it. However, it is possible to share implementation details by utilization of an object's hierarchy through modules. This feature is known as a "Mix-in".
+
 Rubyは多重継承は複雑さの源であるという見地から、 意図的に多重継承を持っていませんが、 モジュールを使ってクラス階層を横断して実装を共有できます。 この機能を"Mix-in"と呼びます。
 
 Methods Can Utilize Blocks (Iterators) ブロック付きメソッド呼び出し(イテレータ)
 ---------------------
+In order to support the abstraction of control structures, so-called block methods can be utilized.
+
 制御構造の抽象化を援助するブロック付きメソッド呼び出しという機能があります。
 
 Closures クロージャ
@@ -74,7 +86,7 @@ Perlをお手本とした強力な文字列操作や正規表現検索の機能�
 
 Bignum 多倍長整数
 -----
-There is builtin support for Bignum, so very large integer calculations can be achieved (as long as sufficient memory is available). For example, the factorial of 400 can easily be calculated.
+There is built-in support for Bignum, so very large integer calculations can be achieved (as long as sufficient memory is available). For example, the factorial of 400 can easily be calculated.
 
 組み込みの多倍長整数機能がありますので、 メモリが許す限り、非常に大きな整数の演算もできます。 たとえば、400の階乗なども簡単に計算できます。
 
