@@ -23,7 +23,7 @@ Rubyの変数はどのような型のデータも格納する事ができます�
 
 Variable Declaration is Unnecessary 変数宣言が不要
 -------
-Variables in Ruby can be used without having to declare them. The actually type of variable(local, global, instance) can be determined from the variable name.
+Variables in Ruby can be used without having to declare them. The actual type of variable(local, global, instance) can be determined from the variable name.
 
 Rubyでは変数を宣言無しで使う事ができます。 変数の種類(ローカル変数、グローバル変数、インスタンス変数など)は 変数名から知る事ができます。
 
