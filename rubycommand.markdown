@@ -1,0 +1,196 @@
+# Ruby Command #
+
+The following is the format for invoking the Ruby interpreter.
+
+ruby [ option ...] [ -- ] [ programfile ] [ argument ...]
+
+`option` indicates any of the after-mentioned available command line options. `--` is used to terminate the list of command line options. `programfile` is a file containing ruby script. If `-` is specified for the `programfile`, ruby script will be read from standard input instead.
+
+A `programfile` that starts with `#!` (known as a shebang) has a special interpretation. Please refer to the section _Interpreter Line Explanation_ for more information. For shells that don't handle wildcards (Win32), Ruby handles the expansion behind the scenes before setting the Kernel::ARGV constant. In this case, the wildcards '\*', '?', '[]', and '\*\*/' can be used ('{..}' cannot be used due to conflicts with `Dir.glob`). If wildcard expansion is not desired, simply enclose the argument in single quotes('). 
+
+## Command Line Options ##
+
+The Ruby interpreter accepts the following command line options. Many of them are similar to those in Perl.
+
+### -0[Number] ####
+
+Specifies the record seperator($/) in octal format.
+
+If no numeric value is specified the seperator will default to a null character ($/ = "\0"). Any command line switches after the numeric value will not have an effect on it.
+
+`-00` enables paragraph mode ($/ = ""). If a numeric value is given that does not map to a character code, the file will be read all at once(the same as $/=nil).
+
+### -a ###
+
+Often used with the `-n` and `-p` switches, it enables auto split mode. Auto split mode results in the following logic, essentially splitting on `$;` (which is ' ' by default):
+
+    $F = $_.split
+
+Since this option depends on the loops provided by `-n` and `-p`, it's not very useful without them.
+
+### -C directory ####
+
+Changes to the indicated directory before executing the script.
+
+### -c ####
+
+Compiles the script in order to check the syntax. If there are no errors, "Syntax OK" will be displayed.
+
+### --copyright ###
+
+Displays copyright information.
+
+### -d ###
+### --debug ###
+
+Runs the script in debug mode. This will set the global $DEBUG variable to true.
+
+### -E ex[:in] ###
+### --encoding ex[:in] ###
+
+Sets the default external and internal encoding using a colon delimited string. External encoding indicates what encoding to expect from external sources such as STDIN, pipes, and files. Internal encoding is that which ruby uses to handle internal values such as strings. If an internal encoding is not specified, the value of `Encoding.default_internal` is set to nil. When the external encoding is omitted by using `:encoding`, the external encoding value defaults to the value set for the internal encoding.
+
+### -e script ###
+
+Runs script from the command line, indicated by the argument value. When the `-e` option is used, the script file name will not be accessible from the arguments.
+
+When `-e` is set multiple times, a newline will be inserted between each script before being interpreted.
+
+    The following are equivalent
+    ruby -e "5.times do |i|" -e "puts i" -e "end"
+
+    ruby -e "5.times do |i|
+      puts i
+    end"
+
+    ruby -e "5.times do |i|; puts i; end"    
+
+### -Fregexp ###
+
+Sets the input field seperator($;, used by String#split) to `regex`.
+
+### -h ###
+### --help ###
+
+Displays help for the command line options.
+
+### -i[extension] ###
+
+Modifies the contents of the file indicated in the arguments(in-place edit). The original file will be backed up using the suffix indicated by extension, unless no extension is specified.
+
+Example:
+
+    % echo matz > /tmp/junk
+    % cat /tmp/junk
+    matz
+    % ruby -p -i.bak -e '$_.upcase!' /tmp/junk
+    % cat /tmp/junk
+    MATZ
+    % cat /tmp/junk.bak
+    matz
+
+### -I directory ###
+
+Updates the file load path to include `directory`. This value will added to the $: array variable.
+
+### -l ###
+
+Enables automatically newline processing. First, `$\` and `$/` are set to the same values, and a newline will be automatically appended when using `print`. Also if the `-n`  or `-p` flag is specified, the return value of `gets` will have `String#chop!` called against it.
+
+### -n ###
+
+When this flag is set, the program will run similar to `sed -n` and `awk`. In essence, program logic will be encapsulated in a loop much like the following:
+
+    while gets
+      ...
+    end
+
+Where the value of `gets` can be accessed through the special global variable `$_`.
+
+### -p ###
+
+Similar to the `-n` flag in functionality, except that at the end of each loop it will print the value of `$_`.
+
+Example:
+
+    % echo matz | ruby -p -e '$_.tr! "a-z", "A-Z"'
+    MATZ
+
+### -r feature ###
+
+Will execute `Kernel.#require` on the library indicated by feature. This is particularly useful when run with the `-n` or `-p` option.
+
+### -s ###
+
+Will interpret values starting with `-` after the script name and create global variables of the same name. It will not interpret anything after `--`. Any interpreted values will be removed from `Kernel::ARGV`.
+
+Example:
+
+    #! /usr/local/bin/ruby -s
+    # prints "true" if invoked with `-xyz' switch.
+    print "true\n" if $xyz
+
+### -S ###
+
+If the script name does not start with `/`, it will be searched for in the `PATH` environment variable. This is useful in cases where indicating the script interpreter through `#!` is not supported by the machine. You can use it as such:
+
+    #!/bin/sh
+    exec ruby -S -x $0 "$@"
+    #! ruby
+
+The first line will pass execution to `/bin/sh`. The second line will start the Ruby interpreter. Since the Ruby interpreter is started with the `-x` option, it will not process any lines beginning with `#!` and up until the word `ruby`.
+
+It's important to note that `$0` may not always have the full path of the script included, so make sure it's in a searchable location when using `-S` with Ruby.
+
+### -T[level] ###
+
+This will enable security checking. When level is set, the value of the safe level will be set to it. The default value is 1 if level is left out. It's a good idea to use `-T1` when dealing with such things as CGI programs. This will set the value of the $SAFE variable.
+
+### -v ###
+### --verbose ###
+
+Verbose mode. The built-in variable $VERBOSE will be set to true. When this variable is set to true, various methods will output verbose information. If the `-v` option is set without any other arguments, the version will be displayed and execution will terminate. 
+
+### --version ###
+
+Displays the version of Ruby.
+
+### -w ###
+
+Does not display the version and sets the verbosity level to the highest.
+
+### -W[level] ###
+
+Sets verbose mode to one of three levels:
+
+  * -W0: Suppresses warnings
+  * -W1: Shows only important warnings (default)
+  * -W2 or -W: Displays all warnings
+
+This also sets the built-in `$VERBOSE` variable to `nil`,`false`, and `true` respectively.
+
+### -x[directory] ###
+
+This will run a script that's embedded inside of a message. The script file will be read in, and anything up until a line beginning with `#!` and containing the word `ruby` will be ignored. Everything after the word `ruby` on that line will be interpreted as command line arguments. The end of the script is indicated by ^D(Control D), ^Z(Control Z), or the reserved keyword `__END__`.
+
+If a directory is given then it will be entered before executing the script.
+
+### -y ###
+### --yydebug ###
+
+Sets compiler debug mode. This displays the syntax analysis process when compiling the script to its internal representation. As the output is extremely verbose, it will only be useful to those trying to debug the compiler.
+
+## Interpreter Line Interpretation ##
+
+When the script indicated at the command line starts with a `#!` and does not contain the word `ruby`, everything after the `#!` will be handed off to the OS as the interpreter. All arguments set on the command line will be passed to the interpreter as well.
+
+For example, if the following script is run through `ruby`, it will execute `sh`:
+
+    #!/bin/sh -vx
+    echo "$@"
+
+If the word `ruby` is contained after the `#!`, all words starting with `-` will be interpreted as options.
+
+These options will be included as command line arguments. This is useful for setting default arguments to run a script under. For example, the following script below will be run as though the `-Ke` option was set on the command line:
+
+    #! ruby -Ke
