@@ -27,7 +27,7 @@ Rubyインタプリタは以下のコマンドラインオプションを受け�
 
 Specifies the record seperator($/) in octal format.
 
-If no numeric value is specified the seperator will default to a null character ($/ = "\0"). Any command line switches after the numeric value will not have an effect on it.
+If no numeric value is specified the separator will default to a null character ($/ = "\0"). Any command line switches after the numeric value will not have an effect on it.
 
 `-00` enables paragraph mode ($/ = ""). If a numeric value is given that does not map to a character code, the file will be read all at once(the same as $/=nil).
 
@@ -43,7 +43,7 @@ Often used with the `-n` and `-p` switches, it enables auto split mode. Auto spl
 
     $F = $_.split
 
-Since this option depends on the loops provided by `-n` and `-p`, it's not very usefull without them.
+Since this option depends on the loops provided by `-n` and `-p`, it's not very useful without them.
 
 `-n'や`-p'とともに用いて, オートスプリットモードをONにします。 オートスプリットモードでは各ループの先頭で,
 
@@ -79,13 +79,13 @@ Runs the script in debug mode. This will set the global $DEBUG variable to true.
 ### -E ex[:in] ###
 ### --encoding ex[:in] ###
 
-Sets the default external and internal encoding using a colon deliminated string. External encoding indicates what encoding to expect from external sources such as STDIN, pipes, and files. Internal encoding is that which ruby uses to handle internal values such as strings. If an internal encoding is not specified, the value of `Encoding.default_internal` is set to nil. When the external encoding is ommitted by using `:encoding`, the external encoding value defaults to the value set for the internal encoding.
+Sets the default external and internal encoding using a colon delimited string. External encoding indicates what encoding to expect from external sources such as STDIN, pipes, and files. Internal encoding is that which ruby uses to handle internal values such as strings. If an internal encoding is not specified, the value of `Encoding.default_internal` is set to nil. When the external encoding is omitted by using `:encoding`, the external encoding value defaults to the value set for the internal encoding.
 
 デフォルトの外部エンコーディングと内部エンコーディングを:区切りで指定 します。内部エンコーディングを省略した場合は Encoding.default_internal は nil になります。また、:エンコーディ ング のように外部エンコーディングを省略した場合は内部エンコーディング のみを変更します。
 
 ### -e script ###
 
-Runs script from the comman line, indicated by the argument value. When the `-e` option is used, the script file name will not be accessible from the arguments.
+Runs script from the command line, indicated by the argument value. When the `-e` option is used, the script file name will not be accessible from the arguments.
 
 When `-e` is set multiple times, a newline will be inserted between each script before being interpreted.
 
@@ -301,7 +301,7 @@ Sets compiler debug mode. This displays the syntax analysis process when compili
 
 コンパイラデバッグモード。スクリプトを内部表現にコンパイルす る時の構文解析の過程を表示します。この表示は非常に冗長なので, コンパイラそのものをデバッグする人以外には必要ないと思います。
 
-## インタプリタ行の解釈 ##
+## インタプリタ行の解釈 Interpreter Line Interpretation ##
 
 When the script indicated at the command line starts with a `#!` and does not contain the word `ruby`, everything after the `#!` will be handed off to the OS as the interpreter. All arguments set on the command line will be passed to the interpreter as well.
 
