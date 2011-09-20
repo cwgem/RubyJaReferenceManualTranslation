@@ -2,6 +2,13 @@ Introduction
 ------------
 This project is meant to provide a translation of the original Japanese Ruby Reference Manual. As Ruby is a programming language of Japanese origin, a good amount of authoritative material on the language is present in Japanese form. My hope is that by translating the documentation to English, it will help provide even more resources to the English speaking Ruby community.
 
+Format
+------
+
+This project uses [Asciidoc](http://www.methods.co.nz/asciidoc/) and source highlighted is handled by the [Pygments](http://pygments.org/) backend. [Pygments' installation instructions](http://pygments.org/download/) contain information about how to obtain it. Once both Pygments and Asciidoc are installed, files can be output to HTML using the following command:
+
+``asciidoc -a pygments= -b xhtml11 -o out/file.html file.txt``
+
 Bugs
 ----
 
