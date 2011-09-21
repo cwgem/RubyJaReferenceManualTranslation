@@ -1,0 +1,27 @@
+= Object =
+
+== What Is An Object? ==
+
+All values that Ruby deals with are objects. Manipulation of these objects is handled through the calling of methods. Which methods an object responds to is uniquely determined by the class it belongs to. The class which an object belongs to is decided at the time of its creation, and with the exception of singleton classes, the class cannot be modified. When compared to a specific class, an object is often referred to as an interface.
+
+The creation of objects is generally initiated through calling the methods of other objects.
+
+== Class ==
+
+Class themselves decide what methods that a member object can respond to. When a method can be called through a member object, it is said that the method is defined in the class. Methods are also uniquely determined by their class and name.
+
+Classes will always have at least one "superclass". Methods defined in the superclass will also be defined for the base class. This is known as "inheritance". Inheritance is chained, so methods defined in a superclass' superclass will also be defined for the base class.
+
+== Module ==
+
+[NOTE]
+Incomplete original Japanese
+
+[source,ruby]
+include
+
+A unique type of object that is not a class but acts similarly.
+
+== Method ==
+
+Methods are executable, and the start of a method execution is known as "calling" that method. It is also possible to pass objects to a method when calling it, which are referred to as "arguments". The number of arguments that a method can accept are determined when the method is defined, and cannot be modified later.
